@@ -14,6 +14,10 @@ The three-system boundary is:
 - **RootRecord Core Node:** MIT-licensed software users can run locally.
 - **RootRecord Core Ops:** local operator desk, backups, review, and control.
 - **RootRecord Core Processor:** hosted operational runtime; no license.
+- **RootRecord RootMC:** all RootMC development; no license.
+
+RootMC development belongs in `RootRecord-RootMC`. Processor should consume
+documented integration contracts rather than becoming a second RootMC source tree.
 
 ## Lore
 
