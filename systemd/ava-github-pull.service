@@ -1,0 +1,13 @@
+[Unit]
+Description=AVA Server GitHub fast-forward pull
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ava
+Group=ava
+WorkingDirectory=/opt/ava-server
+Environment=AVA_REPO=/opt/ava-server
+Environment=AVA_LOG_DIR=/var/log/ava-server
+ExecStart=/usr/bin/python3 /opt/ava-server/scripts/auto-pull-server.py check
