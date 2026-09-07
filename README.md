@@ -3,6 +3,8 @@
 Primary hosted processor for RootRecord 24/7 operations. This repository is
 public for transparency but is not licensed for redistribution.
 
+![RootRecord banner](media/banner.jpg)
+
 ## Role
 
 Processor runs the long-lived server workload: APIs, scheduled automation,
@@ -48,6 +50,10 @@ sudo systemctl start ava-github-pull.service
 sudo journalctl -u ava-github-pull.service -n 50 --no-pager
 ```
 
+On a Windows development checkout, run `install.ps1`; on Ubuntu or Debian,
+run `install.sh`. Both invoke `core/boot.py`, which checks required paths and
+installs manifest-driven dependencies while displaying and preserving logs.
+
 The timer runs every ten minutes after boot. Pulls are fast-forward-only and
 refuse a dirty checkout. Runtime data and logs stay outside Git-tracked source.
 
@@ -57,3 +63,5 @@ refuse a dirty checkout. Runtime data and logs stay outside Git-tracked source.
 - `scripts/auto-pull-server.py`: read-only GitHub updater
 - `systemd/ava-github-pull.service`: one pull operation
 - `systemd/ava-github-pull.timer`: scheduled pull
+- `core/boot.py`: central startup self-check and dependency bootstrap
+- `install.ps1`: Windows development bootstrap

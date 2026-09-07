@@ -6,7 +6,7 @@ INSTALL_DIR="${AVA_INSTALL_DIR:-$SCRIPT_DIR}"
 AVA_USER="${AVA_USER:-ava}"
 LOG_DIR="${AVA_LOG_DIR:-/var/log/ava-server}"
 LOG_FILE="$LOG_DIR/first-run-install.log"
-REPO_URL="${AVA_SERVER_REPO:-https://github.com/Ava-Core-Dev/Ava-Core-Server.git}"
+REPO_URL="${AVA_SERVER_REPO:-https://github.com/Ava-Core-Dev/RootRecord-Core-Processor.git}"
 
 if [[ "$(id -u)" -ne 0 ]]; then
   exec sudo -E bash "$0" "$@"
@@ -74,6 +74,11 @@ if [[ -f "$SCRIPT_DIR/pyproject.toml" ]]; then
   "$INSTALL_DIR/.venv/bin/python" -m pip install -e "$INSTALL_DIR"
 else
   log "No pyproject.toml yet; Python dependency installation will run when AVA Core is added."
+fi
+
+if [[ -f "$SCRIPT_DIR/core/boot.py" ]]; then
+  log "Running central Processor boot self-check"
+  python3 "$SCRIPT_DIR/core/boot.py"
 fi
 
 if [[ -f "$SCRIPT_DIR/.env.example" && ! -f "$INSTALL_DIR/.env" ]]; then
